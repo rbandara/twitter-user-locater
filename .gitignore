@@ -1,0 +1,15 @@
+*/.classpath
+*/.project
+*/.settings
+*/target
+.idea
+build
+target
+*.iml
+*.iws
+.classpath
+.project
+.settings
+.DS_Store
+logs
+node_modules
