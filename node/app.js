@@ -1,25 +1,30 @@
-var http = require('http'),
-    fs = require('fs'),
-    // NEVER use a Sync function except at start-up!
-    index = fs.readFileSync(__dirname + '/index.html');
+var http = require('http');
+//    fs = require('fs'),
+var static = require('node-static');
 
-// Send index.html to all requests
-var app = http.createServer(function(req, res) {
-    res.writeHead(200, {'Content-Type': 'text/html'});
-    res.end(index);
-});
+// make html, js & css files accessible
+var files = new static.Server('./public');
+
+// serve files on request
+function handler(request, response) {
+	request.addListener('end', function() {
+		files.serve(request, response);
+	});
+}
+
+var app = http.createServer(handler);
 
 // Socket.io server listens to our app
 var io = require('socket.io').listen(app);
 app.listen(3000);
 
-// redis code
+// use redis to subscribe
 var redis = require("redis");
 var subscriber = redis.createClient();
 
-subscriber.subscribe("TweetLocationQueue");
+subscriber.subscribe("TweetQueue");
 
-console.log('Subscribed to redis queue \'TweetLocationQueue\'')
+console.log('Subscribed to redis queue \'TweetQueue\'')
 
 subscriber.on("error", function (err) {
     console.log("Error %s", err);

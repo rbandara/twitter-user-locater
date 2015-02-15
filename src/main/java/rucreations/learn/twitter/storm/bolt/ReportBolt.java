@@ -40,7 +40,7 @@ public class ReportBolt extends BaseRichBolt
         String text = tuple.getStringByField("tweet");
 
         // publish the word count to redis using word as the key
-        redis.publish("TweetLocationQueue", location.toString() + "|" + text);
+        redis.publish("TweetQueue", location.toString() + "|" + text);
 
         System.out.println("published to redis " + text);
     }
