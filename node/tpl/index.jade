@@ -1,27 +1,24 @@
-extend layout
+doctype html
+html
+  head
+    link(rel='stylesheet', href='/css/style.css')
+    title= "Twitter Data Analyzer"
+        script(src='//code.jquery.com/jquery-1.7.2.min.js')
+        script(src='/socket.io/socket.io.js')
+        script.
+            var socket = io.connect('//localhost:3000');
 
-block content
-  p
-    | Vivamus hendrerit arcu sed erat molestie
-    | vehicula. Sed auctor neque eu tellus
-    | rhoncus ut eleifend nibh porttitor. Ut in.
-
-  p
-    | Donec congue lacinia dui, a porttitor
-    | lectus condimentum laoreet. Nunc eu
-    | ullamcorper orci. Quisque eget odio ac
-    | lectus vestibulum faucibus eget in metus.
-    | In pellentesque faucibus vestibulum. Nulla
-    | at nulla justo, eget luctus tortor.
-
-block sidebar
-  .widget
-    h1 Widget
-    p
-      | Sed auctor neque eu tellus rhoncus ut
-      | eleifend nibh porttitor. Ut in nulla enim.
-
-    p
-      | Vivamus hendrerit arcu sed erat molestie
-      | vehicula.
-
+            socket.on('message', function(data) {
+                console.log(data);
+                $('#messages').append('<li>' + data.tweet + '</li>');
+            });
+  body
+    header
+      h1 My Site
+    .container
+      .main-content
+        ul#messages
+      .sidebar
+        block sidebar
+    footer
+      p Running on node with Express, Jade and Stylus

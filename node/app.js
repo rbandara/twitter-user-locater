@@ -17,7 +17,7 @@ app.set('views', __dirname + '/tpl');
 app.set('view engine', "jade");
 app.engine('jade', require('jade').__express);
 app.get("/", function(req, res){
-    res.render("index");
+    res.render("page");
 });
 app.use(stylus.middleware(
   { src: __dirname + '/public'
