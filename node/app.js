@@ -1,20 +1,29 @@
 
 var express = require("express");
 var app = express();
+var stylus = require('stylus');
+var nib = require('nib');
 var port = 3000;
 
-//app.get("/", function(req, res){
-//    res.send("It works!");
-//});
-
 app.use(express.static(__dirname + '/public'));
+
+function compile(str, path) {
+  return stylus(str)
+    .set('filename', path)
+    .use(nib());
+}
 
 app.set('views', __dirname + '/tpl');
 app.set('view engine', "jade");
 app.engine('jade', require('jade').__express);
 app.get("/", function(req, res){
-    res.render("page");
+    res.render("index");
 });
+app.use(stylus.middleware(
+  { src: __dirname + '/public'
+  , compile: compile
+  }
+))
 
 
 //app.listen(port);
