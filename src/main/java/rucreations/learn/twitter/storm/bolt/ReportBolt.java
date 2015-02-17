@@ -35,14 +35,15 @@ public class ReportBolt extends BaseRichBolt
     {
         // extracted location
         GeoLocation location = (GeoLocation)tuple.getValueByField("location");
+        System.out.println(location.toString());
 
         // tweet text
         String text = tuple.getStringByField("tweet");
 
-        // publish the word count to redis using word as the key
-        redis.publish("TweetQueue", location.toString() + "|" + text);
+        String latLong = location.getLatitude() + "|" + location.getLongitude();
+        redis.publish("TweetLocationQueue", latLong);
 
-        System.out.println("published to redis " + text);
+        System.out.println(">> Redis :  " + latLong + " : " + text);
     }
 
     public void declareOutputFields(OutputFieldsDeclarer declarer)

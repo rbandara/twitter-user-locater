@@ -5,13 +5,31 @@ html
 
         script(src='//code.jquery.com/jquery-1.7.2.min.js')
         script(src='/socket.io/socket.io.js')
+        script(src='/libs/bootstrap/js/bootstrap.js')
+
+        link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap.css')
+        link(rel='stylesheet', href='/libs/bootstrap/css/bootstrap-responsive.css')
+
+        <!-- Google Maps -->
+        link(rel='stylesheet', href='https://google-developers.appspot.com/maps/documentation/javascript/examples/default.css')
+        script(src='https://maps.googleapis.com/maps/api/js?sensor=false&libraries=visualization')
+
+        <!-- Generic -->
+        link(rel='stylesheet', href='css/index.css')
+
+        <!-- Generic server specific functions -->
+        script(src='/js/FMEServer.js')
+
+        <!-- Spatial Dashboard JavaScript -->
+        script(src='/js/twitterStream.js')
+
         script.
             var socket = io.connect('//localhost:3000');
 
             socket.on('message', function(data) {
                 console.log(data);
-                $('#messages').append('<li>' + data.tweet + '</li>');
+                $('#messages').append('<li> Lat :' + data.lat +  ' Long : '+ data.long +  '</li>'  );
             });
 
-    body
-        ul#messages
+    body(onload="initialize()")
+        #map_canvas

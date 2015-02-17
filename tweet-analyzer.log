@@ -1,0 +1,29 @@
+2015-02-16 22:02:07.884 DEBUG {main} [r.l.t.s.topology.TweetMapperTopology.main:38] -- 
+2015-02-16 22:04:11.102 INFO  {main} [r.l.t.s.topology.TweetMapperTopology.main:51] -- Shutting down the cluster...
+2015-02-16 22:05:45.962 INFO  {Thread-22} [r.l.t.s.t.TweetMapperTopology$1.run:58] -- Shutting down the cluster...
+2015-02-16 22:05:45.968 ERROR {Thread-22} [o.a.s.z.s.NIOServerCnxnFactory$1.uncaughtException:44] -- Thread Thread[Thread-22,5,main] died
+java.lang.IllegalStateException: instance must be started before calling this method
+	at org.apache.storm.guava.base.Preconditions.checkState(Preconditions.java:176) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at org.apache.storm.curator.framework.imps.CuratorFrameworkImpl.getChildren(CuratorFrameworkImpl.java:390) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.zookeeper$get_children.invoke(zookeeper.clj:166) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.cluster$mk_distributed_cluster_state$reify__1915.get_children(cluster.clj:115) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.cluster$mk_storm_cluster_state$reify__2372.active_storms(cluster.clj:291) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at sun.reflect.GeneratedMethodAccessor46.invoke(Unknown Source) ~[na:na]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_20]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_20]
+	at clojure.lang.Reflector.invokeMatchingMethod(Reflector.java:93) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at clojure.lang.Reflector.invokeNoArgInstanceMember(Reflector.java:298) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.daemon.common$get_storm_id.invoke(common.clj:80) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.daemon.nimbus$storm_active_QMARK_.invoke(nimbus.clj:739) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.daemon.nimbus$check_storm_active_BANG_.invoke(nimbus.clj:743) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.daemon.nimbus$fn__5043$exec_fn__1108__auto__$reify__5056.killTopologyWithOpts(nimbus.clj:972) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.daemon.nimbus$fn__5043$exec_fn__1108__auto__$reify__5056.killTopology(nimbus.clj:969) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.8.0_20]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:1.8.0_20]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.8.0_20]
+	at java.lang.reflect.Method.invoke(Method.java:483) ~[na:1.8.0_20]
+	at clojure.lang.Reflector.invokeMatchingMethod(Reflector.java:93) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at clojure.lang.Reflector.invokeInstanceMethod(Reflector.java:28) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.LocalCluster$_killTopology.invoke(LocalCluster.clj:56) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at backtype.storm.LocalCluster.killTopology(Unknown Source) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
+	at rucreations.learn.twitter.storm.topology.TweetMapperTopology$1.run(TweetMapperTopology.java:59) ~[twitter-user-locator-1.0-SNAPSHOT-jar-with-dependencies.jar:na]
