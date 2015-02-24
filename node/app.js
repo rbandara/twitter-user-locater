@@ -47,11 +47,11 @@ subscriber.on("error", function (err) {
 subscriber.on("message", function (channel, message) {
     console.log("Location '" + message);
     var lat = message.split('|')[0];
-    var long = message.split('|')[1];
+    var lng = message.split('|')[1];
     console.log('lat ' + lat);
-    console.log('long ' + long);
+    console.log('lng ' + lng);
     io.sockets.emit('message', {
                         'lat': lat,
-                        'long' : long });
+                        'lng' : lng });
 });
 

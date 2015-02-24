@@ -17,9 +17,6 @@ html
         <!-- Generic -->
         link(rel='stylesheet', href='css/index.css')
 
-        <!-- Generic server specific functions -->
-        script(src='/js/FMEServer.js')
-
         <!-- Spatial Dashboard JavaScript -->
         script(src='/js/twitterStream.js')
 
@@ -28,7 +25,7 @@ html
 
             socket.on('message', function(data) {
                 console.log(data);
-                $('#messages').append('<li> Lat :' + data.lat +  ' Long : '+ data.long +  '</li>'  );
+                $('#messages').append('<li> Lat :' + data.lat +  ' Long : '+ data.lng +  '</li>'  );
             });
 
     body(onload="initialize()")

@@ -34,7 +34,7 @@ function initialize() {
     socket.on('message', function (data) {
 
       //Add tweet to the heat map array.
-      var tweetLocation = new google.maps.LatLng(data.lat,data.long);
+      var tweetLocation = new google.maps.LatLng(data.lat,data.lng);
       liveTweets.push(tweetLocation);
 
       //Flash a dot onto the map quickly
