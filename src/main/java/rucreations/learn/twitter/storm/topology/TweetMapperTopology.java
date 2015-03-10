@@ -16,11 +16,12 @@ import rucreations.learn.twitter.storm.util.Constants;
 import rucreations.learn.twitter.storm.bolt.ReportBolt;
 
 public class TweetMapperTopology {
+
     static Logger logger = org.slf4j.LoggerFactory.getLogger("TweetMapperTopology");
 
     public static void main(String[] args) throws AlreadyAliveException, InvalidTopologyException {
 
-        // What does this do?
+        // TODO - What does this do?
         final Config config = new Config();
         config.setMessageTimeoutSecs(120);
         config.setDebug(false);
@@ -33,9 +34,8 @@ public class TweetMapperTopology {
         //bolt to locate the user location
         topologyBuilder.setBolt("userlocatorbolt", new UserLocatorBolt()).shuffleGrouping("twitterspout");
 
+        // bolt for send the coordinates to Redis
         topologyBuilder.setBolt("reporterbolt", new ReportBolt()).globalGrouping("userlocatorbolt");
-
-        logger.debug("");
 
         //Submit it to the cluster, or submit it locally
         if (null != args && 0 < args.length) {

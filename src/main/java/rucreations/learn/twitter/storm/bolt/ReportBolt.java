@@ -12,29 +12,26 @@ import twitter4j.Status;
 
 import java.util.Map;
 
-public class ReportBolt extends BaseRichBolt
-{
+public class ReportBolt extends BaseRichBolt {
+
     // place holder to keep the connection to redis
-    transient RedisConnection<String,String> redis;
+    private RedisConnection<String, String> redis;
 
     @Override
-    public void prepare(
-            Map map,
-            TopologyContext topologyContext,
-            OutputCollector outputCollector)
-    {
+    public void prepare(Map map, TopologyContext topologyContext, OutputCollector outputCollector) {
+
         // instantiate a redis connection
-        RedisClient client = new RedisClient("localhost",6379);
+        RedisClient client = new RedisClient("localhost", 6379);
 
         // initiate the actual connection
         redis = client.connect();
     }
 
     @Override
-    public void execute(Tuple tuple)
-    {
+    public void execute(Tuple tuple) {
+
         // extracted location
-        GeoLocation location = (GeoLocation)tuple.getValueByField("location");
+        GeoLocation location = (GeoLocation) tuple.getValueByField("location");
         System.out.println(location.toString());
 
         // tweet text
@@ -46,8 +43,7 @@ public class ReportBolt extends BaseRichBolt
         System.out.println(">> Redis :  " + latLong + " : " + text);
     }
 
-    public void declareOutputFields(OutputFieldsDeclarer declarer)
-    {
+    public void declareOutputFields(OutputFieldsDeclarer declarer) {
         // nothing to add - since it is the final bolt
     }
 }
