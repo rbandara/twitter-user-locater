@@ -1,6 +1,20 @@
-# twitter-user-locater
+# Twitter-user-locater
 
 This will connect to real time twitter feed and display the location of a tweet in a google map.
+
+## Technologies used
+
+### Display the map
+* Node.JS
+* Socket.IO
+* Express.JS
+
+### Processing Tweets
+* Java
+* Apache Storm
+* Redis
+
+
 
 To run the java server
 
@@ -16,4 +30,4 @@ This will start the web server which runs port 3000
 
 `http://localhost:3000/`
 
-![alt tag](http://url/to/img.png)
+![Tweet Map](https://github.com/rbandara/twitter-user-locater/blob/master/TweetLocationMap.png)
